@@ -18,6 +18,8 @@ public class PatientDTO implements Serializable
 	private String address;
 	private String phoneNumber;
 	
+	
+	
 	public PatientDTO(Integer patient_id, String firstName, String lastName, String birthdate, String gender,
 			String address, String phoneNumber)
 	{

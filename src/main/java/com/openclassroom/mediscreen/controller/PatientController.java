@@ -1,5 +1,6 @@
 package com.openclassroom.mediscreen.controller;
 
+import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,6 +23,13 @@ public class PatientController
 	@Autowired 
 	PatientService patientService;
 	
+	@GetMapping("/patient/readAll")
+	public List<PatientDTO> getAllPatient()
+	{
+		return patientService.readAll();
+		
+	}
+	
 	@GetMapping("/patient/read/{id}")
 	public Optional<PatientDTO> getPatient(@PathVariable("id") Integer patient_id)
 	{
@@ -35,13 +43,13 @@ public class PatientController
 		return patientService.create(patientDTO);
 	}
 	
-	@PatchMapping("/patient/update/{id}")
+	@PostMapping("/patient/update/{id}")
 	public Patient updatePatient(@PathVariable("id") Integer patient_id,@RequestBody PatientDTO patientDTO)
 	{
 		return patientService.update(patient_id, patientDTO);
 	}
 	
-	@DeleteMapping("/patient/delete/{id}")
+	@GetMapping("/patient/delete/{id}")
 	public void deletePatient(@PathVariable("id") Integer patient_id)
 	{
 		patientService.delete(patient_id);

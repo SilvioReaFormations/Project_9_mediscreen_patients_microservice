@@ -1,5 +1,7 @@
 package com.openclassroom.mediscreen.service;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -35,11 +37,12 @@ public class PatientServiceImpl implements PatientService
 	}
 
 	@Override
-	public Optional<PatientDTO> read(Integer id)
+	public Optional<PatientDTO> read(Integer patient_Id)
 	{
-		Patient patient = patientrepository.findById(id).get();
+		Patient patient = patientrepository.findById(patient_Id).get();
 		
 		PatientDTO patientDTO = new PatientDTO(
+				patient.getPatientId(),
 				patient.getFirstName(), 
 				patient.getLastName(), 
 				patient.getBirthdate(), 
@@ -51,9 +54,10 @@ public class PatientServiceImpl implements PatientService
 	}
 
 	@Override
-	public Patient update(Integer id, PatientDTO patientDto)
+	public Patient update(Integer patient_Id, PatientDTO patientDto)
 	{
-		Patient patient = patientrepository.findById(id).get();
+		Patient patient = patientrepository.findById(patient_Id).get();
+		
 		
 		patient.setFirstName(patientDto.getFirstName());
 		patient.setLastName(patientDto.getLastName());
@@ -68,10 +72,31 @@ public class PatientServiceImpl implements PatientService
 	}
 
 	@Override
-	public void delete(Integer id)
+	public void delete(Integer patient_Id)
 	{
-		patientrepository.deleteById(id);
+		patientrepository.deleteById(patient_Id);
 		
+	}
+
+	@Override
+	public List<PatientDTO> readAll()
+	{
+		List<Patient> list = patientrepository.findAll();
+		List<PatientDTO> listDTO = new ArrayList<>();
+		
+		for (Patient patientList : list)
+		{
+			listDTO.add(new PatientDTO(
+					patientList.getPatientId(),
+					patientList.getFirstName(),
+					patientList.getLastName(),
+					patientList.getBirthdate(),
+					patientList.getGender(),
+					patientList.getAddress(),
+					patientList.getPhoneNumber()));
+		}
+		
+		return listDTO;
 	}
 
 }
