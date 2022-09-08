@@ -35,11 +35,32 @@ public class PatientServiceImpl implements PatientService
 		
 		return newPatient;
 	}
+	
+	@Override
+	public List<PatientDTO> readAll()
+	{
+		List<Patient> list = patientrepository.findAll();
+		List<PatientDTO> listDTO = new ArrayList<>();
+		
+		for (Patient patientList : list)
+		{
+			listDTO.add(new PatientDTO(
+					patientList.getPatientId(),
+					patientList.getFirstName(),
+					patientList.getLastName(),
+					patientList.getBirthdate(),
+					patientList.getGender(),
+					patientList.getAddress(),
+					patientList.getPhoneNumber()));
+		}
+		
+		return listDTO;
+	}
 
 	@Override
-	public Optional<PatientDTO> read(Integer patient_Id)
+	public Optional<PatientDTO> read(Integer patient_id)
 	{
-		Patient patient = patientrepository.findById(patient_Id).get();
+		Patient patient = patientrepository.findById(patient_id).get();
 		
 		PatientDTO patientDTO = new PatientDTO(
 				patient.getPatientId(),
@@ -78,25 +99,6 @@ public class PatientServiceImpl implements PatientService
 		
 	}
 
-	@Override
-	public List<PatientDTO> readAll()
-	{
-		List<Patient> list = patientrepository.findAll();
-		List<PatientDTO> listDTO = new ArrayList<>();
-		
-		for (Patient patientList : list)
-		{
-			listDTO.add(new PatientDTO(
-					patientList.getPatientId(),
-					patientList.getFirstName(),
-					patientList.getLastName(),
-					patientList.getBirthdate(),
-					patientList.getGender(),
-					patientList.getAddress(),
-					patientList.getPhoneNumber()));
-		}
-		
-		return listDTO;
-	}
+	
 
 }

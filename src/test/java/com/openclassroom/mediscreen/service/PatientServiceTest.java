@@ -1,8 +1,12 @@
 package com.openclassroom.mediscreen.service;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertTrue;
+import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Optional;
 
 import org.junit.jupiter.api.Test;
@@ -72,6 +76,8 @@ public class PatientServiceTest
 				"patientAddress",
 				"patientPhoneNumber");
 		
+		newPatientTest.setPatientId(1);
+		
 		when(psRepo.findById(1)).thenReturn(Optional.of(newPatientTest));
 		
 		PatientDTO readPatientDTO = psImpl.read(1).get();
@@ -83,8 +89,48 @@ public class PatientServiceTest
 	}
 	
 	@Test
-	public void deletePatientMethodTest()
+	public void readAllPatientsMethodTest()
 	{
 		
+		List<Patient> patientList = new ArrayList<>();
+		Patient patient = new Patient(
+				"patientFirstName",
+				"patientLastName",
+				"patientBirthdate",
+				"patientGender",
+				"patientAddress",
+				"patientPhoneNumber");
+		patient.setPatientId(1);
+		patientList.add(patient);
+		
+		when(psRepo.findAll()).thenReturn(patientList);
+		
+		List<PatientDTO> patientDTOList = psImpl.readAll();
+		
+		assertTrue(patientDTOList.get(0).getFirstName().equals("patientFirstName"));
+		
 	}
+	
+	@Test
+	public void deletePatientMethodTest()
+	{
+		Patient newPatientTest = new Patient(
+				"patientFirstName",
+				"patientLastName",
+				"patientBirthdate",
+				"patientGender",
+				"patientAddress",
+				"patientPhoneNumber");
+		
+		newPatientTest.setPatientId(1);
+		
+		psImpl.delete(1);
+		
+		psRepo.delete(newPatientTest);
+		
+		verify(psRepo).delete(newPatientTest);
+
+		
+	}
+	
 }
