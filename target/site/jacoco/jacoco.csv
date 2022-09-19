@@ -1,0 +1,6 @@
+GROUP,PACKAGE,CLASS,INSTRUCTION_MISSED,INSTRUCTION_COVERED,BRANCH_MISSED,BRANCH_COVERED,LINE_MISSED,LINE_COVERED,COMPLEXITY_MISSED,COMPLEXITY_COVERED,METHOD_MISSED,METHOD_COVERED
+PROJET_9_Mediscreen,com.openclassroom.mediscreen.controller,PatientController,25,3,0,0,6,1,5,1,5,1
+PROJET_9_Mediscreen,com.openclassroom.mediscreen.repository,PatientDTO,34,63,0,0,17,23,9,8,9,8
+PROJET_9_Mediscreen,com.openclassroom.mediscreen,Projet9MediscreenApplication,5,4,0,0,2,2,1,2,1,2
+PROJET_9_Mediscreen,com.openclassroom.mediscreen.model,Patient,14,75,0,0,1,31,1,16,1,16
+PROJET_9_Mediscreen,com.openclassroom.mediscreen.service,PatientServiceImpl,0,140,0,2,0,44,0,7,0,6

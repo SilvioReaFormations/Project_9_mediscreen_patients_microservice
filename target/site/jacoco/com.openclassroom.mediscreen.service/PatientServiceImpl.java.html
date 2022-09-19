@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="fr"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>PatientServiceImpl.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">PROJET_9_Mediscreen</a> &gt; <a href="index.source.html" class="el_package">com.openclassroom.mediscreen.service</a> &gt; <span class="el_source">PatientServiceImpl.java</span></div><h1>PatientServiceImpl.java</h1><pre class="source lang-java linenums">package com.openclassroom.mediscreen.service;
+
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Optional;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+import com.openclassroom.mediscreen.model.Patient;
+import com.openclassroom.mediscreen.repository.PatientDTO;
+import com.openclassroom.mediscreen.repository.PatientRepository;
+
+@Service
+<span class="fc" id="L15">public class PatientServiceImpl implements PatientService</span>
+{
+	
+	@Autowired
+	private PatientRepository patientrepository;
+	
+	
+	
+	@Override
+	public Patient create(PatientDTO patient)
+	{
+<span class="fc" id="L26">		Patient newPatient = new Patient(</span>
+<span class="fc" id="L27">				patient.getFirstName(),</span>
+<span class="fc" id="L28">				patient.getLastName(),</span>
+<span class="fc" id="L29">				patient.getBirthdate(),</span>
+<span class="fc" id="L30">				patient.getGender(),</span>
+<span class="fc" id="L31">				patient.getAddress(),</span>
+<span class="fc" id="L32">				patient.getPhoneNumber());</span>
+		
+<span class="fc" id="L34">		patientrepository.save(newPatient);</span>
+		
+<span class="fc" id="L36">		return newPatient;</span>
+	}
+	
+	@Override
+	public List&lt;PatientDTO&gt; readAll()
+	{
+<span class="fc" id="L42">		List&lt;Patient&gt; list = patientrepository.findAll();</span>
+<span class="fc" id="L43">		List&lt;PatientDTO&gt; listDTO = new ArrayList&lt;&gt;();</span>
+		
+<span class="fc bfc" id="L45" title="All 2 branches covered.">		for (Patient patientList : list)</span>
+		{
+<span class="fc" id="L47">			listDTO.add(new PatientDTO(</span>
+<span class="fc" id="L48">					patientList.getPatientId(),</span>
+<span class="fc" id="L49">					patientList.getFirstName(),</span>
+<span class="fc" id="L50">					patientList.getLastName(),</span>
+<span class="fc" id="L51">					patientList.getBirthdate(),</span>
+<span class="fc" id="L52">					patientList.getGender(),</span>
+<span class="fc" id="L53">					patientList.getAddress(),</span>
+<span class="fc" id="L54">					patientList.getPhoneNumber()));</span>
+<span class="fc" id="L55">		}</span>
+		
+<span class="fc" id="L57">		return listDTO;</span>
+	}
+
+	@Override
+	public Optional&lt;PatientDTO&gt; read(Integer patient_id)
+	{
+<span class="fc" id="L63">		Patient patient = patientrepository.findById(patient_id).get();</span>
+		
+<span class="fc" id="L65">		PatientDTO patientDTO = new PatientDTO(</span>
+<span class="fc" id="L66">				patient.getPatientId(),</span>
+<span class="fc" id="L67">				patient.getFirstName(), </span>
+<span class="fc" id="L68">				patient.getLastName(), </span>
+<span class="fc" id="L69">				patient.getBirthdate(), </span>
+<span class="fc" id="L70">				patient.getGender(), </span>
+<span class="fc" id="L71">				patient.getAddress(), </span>
+<span class="fc" id="L72">				patient.getPhoneNumber());</span>
+		
+<span class="fc" id="L74">		return Optional.of(patientDTO);</span>
+	}
+
+	@Override
+	public Patient update(Integer patient_Id, PatientDTO patientDto)
+	{
+<span class="fc" id="L80">		Patient patient = patientrepository.findById(patient_Id).get();</span>
+		
+		
+<span class="fc" id="L83">		patient.setFirstName(patientDto.getFirstName());</span>
+<span class="fc" id="L84">		patient.setLastName(patientDto.getLastName());</span>
+<span class="fc" id="L85">		patient.setBirthdate(patientDto.getBirthdate());</span>
+<span class="fc" id="L86">		patient.setGender(patientDto.getGender());</span>
+<span class="fc" id="L87">		patient.setAddress(patientDto.getAddress());</span>
+<span class="fc" id="L88">		patient.setPhoneNumber(patientDto.getPhoneNumber());</span>
+		
+<span class="fc" id="L90">		patientrepository.save(patient);</span>
+		
+<span class="fc" id="L92">		return patient;</span>
+	}
+
+	@Override
+	public void delete(Integer patient_Id)
+	{
+<span class="fc" id="L98">		patientrepository.deleteById(patient_Id);</span>
+		
+<span class="fc" id="L100">	}</span>
+
+	
+
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.5.201910111838</span></div></body></html>

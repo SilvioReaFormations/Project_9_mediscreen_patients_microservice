@@ -1,0 +1,132 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="fr"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>PatientDTO.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">PROJET_9_Mediscreen</a> &gt; <a href="index.source.html" class="el_package">com.openclassroom.mediscreen.repository</a> &gt; <span class="el_source">PatientDTO.java</span></div><h1>PatientDTO.java</h1><pre class="source lang-java linenums">package com.openclassroom.mediscreen.repository;
+
+import java.io.Serializable;
+
+public class PatientDTO implements Serializable
+{
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+	
+	
+	private Integer patient_id;
+	private String firstName;
+	private String lastName;
+	private String birthdate;
+	private String gender;
+	private String address;
+	private String phoneNumber;
+	
+	
+	
+	public PatientDTO(Integer patient_id, String firstName, String lastName, String birthdate, String gender,
+			String address, String phoneNumber)
+	{
+<span class="fc" id="L26">		super();</span>
+<span class="fc" id="L27">		this.patient_id = patient_id;</span>
+<span class="fc" id="L28">		this.firstName = firstName;</span>
+<span class="fc" id="L29">		this.lastName = lastName;</span>
+<span class="fc" id="L30">		this.birthdate = birthdate;</span>
+<span class="fc" id="L31">		this.gender = gender;</span>
+<span class="fc" id="L32">		this.address = address;</span>
+<span class="fc" id="L33">		this.phoneNumber = phoneNumber;</span>
+<span class="fc" id="L34">	}</span>
+	
+	
+
+	public PatientDTO(String firstName, String lastName, String birthdate, String gender, String address,
+			String phoneNumber)
+	{
+<span class="fc" id="L41">		super();</span>
+<span class="fc" id="L42">		this.firstName = firstName;</span>
+<span class="fc" id="L43">		this.lastName = lastName;</span>
+<span class="fc" id="L44">		this.birthdate = birthdate;</span>
+<span class="fc" id="L45">		this.gender = gender;</span>
+<span class="fc" id="L46">		this.address = address;</span>
+<span class="fc" id="L47">		this.phoneNumber = phoneNumber;</span>
+<span class="fc" id="L48">	}</span>
+
+
+
+	public PatientDTO()
+	{
+<span class="nc" id="L54">		super();</span>
+<span class="nc" id="L55">	}</span>
+
+
+
+	public Integer getPatientId()
+	{
+<span class="nc" id="L61">		return patient_id;</span>
+	}
+
+	public void setPatientId(Integer patientId)
+	{
+<span class="nc" id="L66">		this.patient_id = patientId;</span>
+<span class="nc" id="L67">	}</span>
+
+	public String getFirstName()
+	{
+<span class="fc" id="L71">		return firstName;</span>
+	}
+
+	public void setFirstName(String firstName)
+	{
+<span class="nc" id="L76">		this.firstName = firstName;</span>
+<span class="nc" id="L77">	}</span>
+
+	public String getLastName()
+	{
+<span class="fc" id="L81">		return lastName;</span>
+	}
+
+	public void setLastName(String lastName)
+	{
+<span class="nc" id="L86">		this.lastName = lastName;</span>
+<span class="nc" id="L87">	}</span>
+
+	public String getBirthdate()
+	{
+<span class="fc" id="L91">		return birthdate;</span>
+	}
+
+	public void setBirthdate(String birthdate)
+	{
+<span class="nc" id="L96">		this.birthdate = birthdate;</span>
+<span class="nc" id="L97">	}</span>
+
+	public String getGender()
+	{
+<span class="fc" id="L101">		return gender;</span>
+	}
+
+	public void setGender(String gender)
+	{
+<span class="nc" id="L106">		this.gender = gender;</span>
+<span class="nc" id="L107">	}</span>
+
+	public String getAddress()
+	{
+<span class="fc" id="L111">		return address;</span>
+	}
+
+	public void setAddress(String address)
+	{
+<span class="nc" id="L116">		this.address = address;</span>
+<span class="nc" id="L117">	}</span>
+
+	public String getPhoneNumber()
+	{
+<span class="fc" id="L121">		return phoneNumber;</span>
+	}
+
+	public void setPhoneNumber(String phoneNumber)
+	{
+<span class="nc" id="L126">		this.phoneNumber = phoneNumber;</span>
+<span class="nc" id="L127">	}</span>
+	
+	
+	
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.5.201910111838</span></div></body></html>
